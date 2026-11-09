@@ -50,6 +50,21 @@ body {
   line-height: 1.7;
 }
 
+/* Banner image as a fixed backdrop behind the whole page.
+   The dark overlay keeps text readable – raise the 0.55/0.85
+   values to make the image darker, lower them to show more. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(18, 16, 21, 0.55), rgba(18, 16, 21, 0.85)),
+    url("../assets/background-banner.png");
+  background-size: cover;
+  background-position: center;
+}
+
 img,
 svg {
   display: block;
@@ -126,6 +141,13 @@ a:focus-visible {
 .logo-frame-small {
   width: 38px;
   height: 38px;
+}
+
+/* Footer logo: show the whole image instead of the zoomed crop */
+.logo-frame-small .logo {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .logo {
