@@ -135,6 +135,20 @@ a:focus-visible {
   margin: -40%;
 }
 
+/* Header logo: the new image already has a tight margin,
+   so show it whole and let it gently float inside its frame. */
+.logo-header {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  animation: logo-float 3s ease-in-out infinite;
+}
+
+@keyframes logo-float {
+  0%, 100% { transform: translateY(2px); }
+  50%      { transform: translateY(-2px); }
+}
+
 .site-name {
   font-family: var(--font-pixel);
   font-weight: 700;
