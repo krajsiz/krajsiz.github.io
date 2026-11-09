@@ -1,0 +1,529 @@
+﻿/* =========================================================
+   krajsiz – website styles
+   ---------------------------------------------------------
+   EASY EDITING: change the colors and fonts below and the
+   whole website updates automatically.
+   ========================================================= */
+
+:root {
+  /* ---- Colors ---- */
+  --color-bg:          #121015;  /* page background (almost black) */
+  --color-panel:       #1b1820;  /* window / card background */
+  --color-panel-dark:  #16131a;  /* darker panel areas */
+  --color-text:        #ece7f3;  /* main text (off-white) */
+  --color-muted:       #b3abbf;  /* secondary text */
+  --color-accent:      #b9a3e3;  /* light violet – headings, links */
+  --color-purple:      #6b4fa0;  /* deep purple – borders, title bars */
+  --color-purple-dark: #3a2a58;  /* shadows */
+  --color-border:      #4a3a68;  /* panel borders */
+
+  /* ---- Fonts ---- */
+  --font-pixel: "Silkscreen", "Courier New", monospace; /* headings */
+  --font-body:  "IBM Plex Sans", Arial, sans-serif;        /* paragraphs */
+  --font-mono:  "IBM Plex Mono", "Courier New", monospace; /* small labels */
+
+  /* ---- Sizes ---- */
+  --max-width: 1080px;
+  --px: 3px;            /* "pixel" size used for borders */
+}
+
+/* ---------- Basics ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  /* very subtle pixel dot grid */
+  background-image: radial-gradient(rgba(185, 163, 227, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:focus-visible {
+  outline: var(--px) dashed var(--color-accent);
+  outline-offset: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: 8px 12px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 16px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-panel-dark);
+  border-bottom: var(--px) solid var(--color-purple);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+/* The logo image has a lot of black space around the emblem.
+   This black tile shows the centre of the image larger,
+   without changing the logo file itself. */
+.logo-frame {
+  display: block;
+  width: 52px;    /* change this to make the header logo bigger/smaller */
+  height: 52px;
+  overflow: hidden;
+  background-color: #000;
+  border: var(--px) solid var(--color-purple);
+}
+
+.logo-frame-small {
+  width: 38px;
+  height: 38px;
+}
+
+.logo {
+  width: 180%;
+  height: 180%;   /* same as width, so proportions never change */
+  max-width: none;
+  margin: -40%;
+}
+
+.site-name {
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--color-text);
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  display: inline-block;
+  padding: 6px 12px;
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  letter-spacing: 0;
+  color: var(--color-text);
+  text-decoration: none;
+  border: var(--px) solid transparent;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.nav-list a:hover {
+  border-color: var(--color-purple);
+  background-color: var(--color-purple-dark);
+  color: var(--color-accent);
+}
+
+/* ---------- Retro window panels ---------- */
+.window {
+  background-color: var(--color-panel);
+  border: var(--px) solid var(--color-border);
+  box-shadow: 6px 6px 0 0 var(--color-purple-dark);
+}
+
+.window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 10px;
+  background-color: var(--color-purple);
+  border-bottom: var(--px) solid var(--color-border);
+}
+
+.window-title {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+}
+
+.window-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.window-buttons i {
+  width: 11px;
+  height: 11px;
+  background-color: var(--color-panel-dark);
+  border: 2px solid var(--color-text);
+}
+
+.window-body {
+  padding: 32px;
+}
+
+/* ---------- Pixel divider ---------- */
+.pixel-divider {
+  max-width: calc(var(--max-width) - 32px);
+  height: 6px;
+  margin: 0 auto;
+  border: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 72px 0;
+  scroll-margin-top: 80px;
+}
+
+.hero-body {
+  position: relative;
+  padding: 48px;
+}
+
+.prompt {
+  margin: 0 0 16px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.hero-title {
+  max-width: 20ch;
+  margin: 0 0 20px;
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.text-cursor {
+  display: inline-block;
+  width: 0.45em;
+  height: 0.85em;
+  margin-left: 0.12em;
+  vertical-align: -0.05em;
+  background-color: var(--color-accent);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero-text {
+  max-width: 58ch;
+  margin: 0 0 32px;
+  color: var(--color-muted);
+  font-size: 1.125rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pixel-cursor {
+  position: absolute;
+  right: 56px;
+  bottom: 40px;
+  width: 36px;
+  fill: var(--color-text);
+  filter: drop-shadow(3px 3px 0 var(--color-purple));
+  animation: float 3s steps(4) infinite;
+}
+
+@keyframes float {
+  50% { transform: translate(-6px, -6px); }
+}
+
+/* ---------- Pixel buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  margin: var(--px);  /* room for the pixel border */
+  font-family: var(--font-pixel);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-decoration: none;
+  /* notched "pixel" border made with shadows */
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--btn-border),
+    0 var(--px) 0 0 var(--btn-border),
+    calc(var(--px) * -1) 0 0 0 var(--btn-border),
+    var(--px) 0 0 0 var(--btn-border);
+  transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  --btn-border: var(--color-accent);
+  background-color: var(--color-purple);
+  color: var(--color-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.btn-secondary {
+  --btn-border: var(--color-border);
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  --btn-border: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 72px 0;
+  scroll-margin-top: 80px;
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: 0;
+  color: var(--color-accent);
+}
+
+.section-title::before {
+  content: "\25A0  ";  /* small square */
+  color: var(--color-purple);
+}
+
+.section-text {
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* ---------- Asset cards ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.card {
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.card:hover {
+  transform: translate(-3px, -3px);
+  border-color: var(--color-purple);
+  box-shadow: 9px 9px 0 0 var(--color-purple-dark);
+}
+
+.card .window-body {
+  padding: 28px 24px;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  fill: var(--color-accent);
+}
+
+.card-icon .icon-fill {
+  fill: var(--color-purple);
+}
+
+.card-title {
+  margin: 0 0 8px;
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  color: var(--color-text);
+}
+
+/* the pixel font's "&" looks like "€", so use the normal font for it */
+.amp {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.card p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* ---------- Contact ---------- */
+.contact-window .section-text {
+  margin-bottom: 28px;
+}
+
+.email-link {
+  text-transform: none;
+  word-break: break-all;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 24px;
+  padding: 28px 0;
+  background-color: var(--color-panel-dark);
+  border-top: var(--px) solid var(--color-purple);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-footer p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .site-header {
+    position: static;  /* header scrolls away on phones to save space */
+  }
+
+  .header-inner {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 14px;
+    padding-bottom: 12px;
+  }
+
+  .logo-frame {
+    width: 44px;
+    height: 44px;
+  }
+
+  .nav-list {
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .nav-list a {
+    padding: 6px 7px;
+    font-size: 0.875rem;
+  }
+
+  .hero,
+  .section {
+    padding: 48px 0;
+    scroll-margin-top: 0;
+  }
+
+  .window-body,
+  .hero-body {
+    padding: 24px 20px;
+  }
+
+  .pixel-cursor {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Turn off animations for people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
